@@ -1,0 +1,10 @@
+{
+  "description": "Connects students and organizations with short-term project opportunities by matching skills and availability, streamlining collaboration and recruitment.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
