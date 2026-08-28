@@ -7,6 +7,13 @@ import MyApplications from "./pages/MyApplications";
 import PostOpportunity from "./pages/PostOpportunity";
 import OrgPanel from "./pages/OrgPanel";
 import CandidateReview from "./pages/CandidateReview";
+import Auth from "./pages/Auth";
+import Onboarding from "./pages/Onboarding";
+import Messages from "./pages/Messages";
+import Notifications from "./pages/Notifications";
+import ApplicationStatus from "./pages/ApplicationStatus";
+import Reviews from "./pages/Reviews";
+import OrgProfile from "./pages/OrgProfile";
 import Header from "./components/Header";
 
 export type Screen =
@@ -17,7 +24,14 @@ export type Screen =
   | "my-applications"
   | "post-opportunity"
   | "org-panel"
-  | "candidate-review";
+  | "candidate-review"
+  | "auth"
+  | "onboarding"
+  | "messages"
+  | "notifications"
+  | "application-status"
+  | "reviews"
+  | "org-profile";
 
 export type UserRole = "talent" | "org" | null;
 
@@ -65,9 +79,16 @@ export default function App() {
         opportunityId={state.selectedOpportunityId}
       />
     ),
+    auth: <Auth navigate={navigate} />,
+    onboarding: <Onboarding navigate={navigate} role={state.role} />,
+    messages: <Messages navigate={navigate} role={state.role} />,
+    notifications: <Notifications navigate={navigate} role={state.role} />,
+    "application-status": <ApplicationStatus navigate={navigate} />,
+    reviews: <Reviews navigate={navigate} role={state.role} />,
+    "org-profile": <OrgProfile navigate={navigate} />,
   };
 
-  const showHeader = state.screen !== "landing";
+  const showHeader = !["landing", "auth", "onboarding"].includes(state.screen);
 
   return (
     <div className="min-h-screen bg-white text-gray-900">

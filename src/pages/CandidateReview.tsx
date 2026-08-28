@@ -147,6 +147,11 @@ export default function CandidateReview({ navigate, candidateId }: Props) {
               <p className="text-xs text-gray-500 mb-2">Disponibilidade</p>
               <p className="text-sm font-medium text-gray-900">{candidate.availability}</p>
             </div>
+            {status === "Aprovado" && (
+              <button onClick={() => navigate("messages")} className="w-full mt-4 bg-emerald-600 text-white py-3 rounded-xl text-sm font-medium hover:bg-emerald-700 transition-colors">
+                Iniciar conversa
+              </button>
+            )}
           </div>
         </div>
       </div>

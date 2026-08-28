@@ -14,13 +14,13 @@ export default function Landing({ navigate }: Props) {
           <BrandLogo light />
           <div className="flex items-center gap-2">
             <button
-              onClick={() => navigate("browse", { role: "talent" })}
+              onClick={() => navigate("auth")}
               className="text-sm text-white/70 hover:text-white transition-colors px-4 py-2"
             >
               Entrar
             </button>
             <button
-              onClick={() => navigate("talent-profile", { role: "talent" })}
+              onClick={() => navigate("onboarding", { role: "talent" })}
               className="text-sm bg-white text-gray-900 px-5 py-2.5 rounded-xl hover:bg-emerald-50 transition-colors font-medium"
             >
               Cadastrar grátis

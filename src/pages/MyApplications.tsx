@@ -60,6 +60,12 @@ export default function MyApplications({ navigate }: Props) {
                 </span>
               )}
             </div>
+            <div className="mt-4 flex gap-2">
+              <button onClick={() => navigate("application-status")} className="text-xs font-medium text-emerald-700 hover:text-emerald-800">
+                Acompanhar etapa →
+              </button>
+              {app.status === "Aprovado" && <button onClick={() => navigate("messages")} className="text-xs font-medium text-gray-500 hover:text-gray-800">Abrir conversa →</button>}
+            </div>
           </div>
         ))}
       </div>
