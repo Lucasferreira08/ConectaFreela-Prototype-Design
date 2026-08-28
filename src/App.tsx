@@ -34,12 +34,14 @@ export type Screen =
   | "org-profile";
 
 export type UserRole = "talent" | "org" | null;
+export type AuthMode = "login" | "signup";
 
 export interface AppState {
   screen: Screen;
   role: UserRole;
   selectedOpportunityId: string | null;
   selectedCandidateId: string | null;
+  authMode: AuthMode;
 }
 
 export default function App() {
@@ -48,6 +50,7 @@ export default function App() {
     role: null,
     selectedOpportunityId: null,
     selectedCandidateId: null,
+    authMode: "login",
   });
 
   const navigate = (
@@ -79,7 +82,7 @@ export default function App() {
         opportunityId={state.selectedOpportunityId}
       />
     ),
-    auth: <Auth navigate={navigate} />,
+    auth: <Auth navigate={navigate} initialRole={state.role} initialMode={state.authMode} />,
     onboarding: <Onboarding navigate={navigate} role={state.role} />,
     messages: <Messages navigate={navigate} role={state.role} />,
     notifications: <Notifications navigate={navigate} role={state.role} />,

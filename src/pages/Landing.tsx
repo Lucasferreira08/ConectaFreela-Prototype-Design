@@ -14,13 +14,13 @@ export default function Landing({ navigate }: Props) {
           <BrandLogo light />
           <div className="flex items-center gap-2">
             <button
-              onClick={() => navigate("auth")}
+              onClick={() => navigate("auth", { role: null, authMode: "login" })}
               className="text-sm text-white/70 hover:text-white transition-colors px-4 py-2"
             >
               Entrar
             </button>
             <button
-              onClick={() => navigate("onboarding", { role: "talent" })}
+              onClick={() => navigate("auth", { role: null, authMode: "signup" })}
               className="text-sm bg-white text-gray-900 px-5 py-2.5 rounded-xl hover:bg-emerald-50 transition-colors font-medium"
             >
               Cadastrar grátis
@@ -125,7 +125,7 @@ export default function Landing({ navigate }: Props) {
 
           <div className="flex flex-col sm:flex-row gap-3">
             <button
-              onClick={() => navigate("browse", { role: "talent" })}
+              onClick={() => navigate("auth", { role: "talent", authMode: "signup" })}
               className="flex items-center justify-center gap-2.5 bg-emerald-500 hover:bg-emerald-400 text-white px-7 py-4 rounded-xl font-medium transition-colors text-sm"
             >
               Sou Talento — ver oportunidades
@@ -134,7 +134,7 @@ export default function Landing({ navigate }: Props) {
               </svg>
             </button>
             <button
-              onClick={() => navigate("org-panel", { role: "org" })}
+              onClick={() => navigate("auth", { role: "org", authMode: "signup" })}
               className="flex items-center justify-center gap-2.5 border border-white/20 hover:border-white/40 text-white/80 hover:text-white px-7 py-4 rounded-xl font-medium transition-colors text-sm"
             >
               Sou Organização — publicar projeto
@@ -193,7 +193,7 @@ export default function Landing({ navigate }: Props) {
               ))}
             </div>
             <button
-              onClick={() => navigate("talent-profile", { role: "talent" })}
+              onClick={() => navigate("auth", { role: "talent", authMode: "signup" })}
               className="mt-8 w-full bg-emerald-600 text-white py-3.5 rounded-xl text-sm font-medium hover:bg-emerald-700 transition-colors"
             >
               Criar perfil grátis
@@ -222,7 +222,7 @@ export default function Landing({ navigate }: Props) {
               ))}
             </div>
             <button
-              onClick={() => navigate("post-opportunity", { role: "org" })}
+              onClick={() => navigate("auth", { role: "org", authMode: "signup" })}
               className="mt-8 w-full border border-white/20 text-white py-3.5 rounded-xl text-sm font-medium hover:bg-white/10 transition-colors"
             >
               Publicar oportunidade
@@ -264,13 +264,13 @@ export default function Landing({ navigate }: Props) {
           </div>
           <div className="flex gap-3 flex-shrink-0">
             <button
-              onClick={() => navigate("talent-profile", { role: "talent" })}
+              onClick={() => navigate("auth", { role: "talent", authMode: "signup" })}
               className="bg-white text-emerald-800 px-6 py-3 rounded-xl text-sm font-semibold hover:bg-emerald-50 transition-colors"
             >
               Cadastrar como Talento
             </button>
             <button
-              onClick={() => navigate("org-panel", { role: "org" })}
+              onClick={() => navigate("auth", { role: "org", authMode: "signup" })}
               className="border border-white/30 text-white px-6 py-3 rounded-xl text-sm font-medium hover:bg-white/10 transition-colors"
             >
               Sou Organização
