@@ -2,7 +2,7 @@
 
 Protótipo de uma plataforma que conecta talentos a organizações para oportunidades de projetos, voluntariado e trabalhos remunerados.
 
-O projeto é uma aplicação frontend: os dados, mensagens, candidaturas e avaliações são simulados no navegador. Não há autenticação real, banco de dados nem integração com API neste estágio.
+É uma aplicação frontend demonstrativa. Dados de vagas, candidatos, mensagens, avaliações, recuperação de senha e contratação de planos são simulados no navegador; não há API, banco de dados, autenticação ou pagamento real.
 
 ## Tecnologias
 
@@ -18,7 +18,7 @@ O projeto é uma aplicação frontend: os dados, mensagens, candidaturas e avali
 - Node.js 22 ou posterior
 - pnpm 10 ou posterior
 
-As versões utilizadas pelo projeto estão registradas em [`.mise.toml`](.mise.toml).
+As versões usadas pelo projeto estão em [`.mise.toml`](.mise.toml).
 
 ### Instalação
 
@@ -28,19 +28,19 @@ No terminal, dentro da pasta do projeto:
 pnpm install
 ```
 
-### Ambiente de desenvolvimento
+### Desenvolvimento
 
 ```powershell
 pnpm dev
 ```
 
-O Vite exibirá a URL para acesso. Por padrão, a aplicação utiliza a porta `8443`:
+O Vite exibirá a URL de acesso. A porta padrão é `8443`:
 
 ```text
 http://localhost:8443
 ```
 
-No Figma Make, o servidor de desenvolvimento já é iniciado pelo ambiente e as alterações aparecem automaticamente no painel de preview.
+No Figma Make, o servidor de desenvolvimento já é iniciado pelo ambiente. As alterações aparecem automaticamente no painel de preview.
 
 ### Build de produção
 
@@ -48,7 +48,7 @@ No Figma Make, o servidor de desenvolvimento já é iniciado pelo ambiente e as 
 pnpm build
 ```
 
-O resultado é gerado na pasta `dist`.
+Os arquivos são gerados em `dist`.
 
 ### Visualizar a build
 
@@ -62,15 +62,23 @@ pnpm preview
 pnpm format
 ```
 
-## Fluxos da plataforma
+## Acesso e cadastro
 
-A página inicial apresenta os dois caminhos. No login/cadastro, a pessoa escolhe se entra como **Talento** ou **Organização**. A navegação principal muda de acordo com essa escolha.
+A landing page possui atalhos para entrar ou criar uma conta. No cadastro, a pessoa escolhe entre os perfis **Talento** e **Organização**.
+
+- Os CTAs direcionados a Talento já abrem o cadastro com “Sou talento” selecionado.
+- Os CTAs direcionados a Organização já abrem o cadastro com “Sou organização” selecionado.
+- O botão “Cadastrar grátis” permite escolher o perfil antes de criar a conta.
+- Login e cadastro têm o botão **Voltar ao início**.
+- No login, o link **Esqueci minha senha** abre o fluxo de recuperação por e-mail. O envio é apenas demonstrativo neste protótipo.
+
+## Fluxos da plataforma
 
 ### Fluxo do Talento
 
 1. **Criar conta ou entrar**
    - Seleciona “Sou talento”.
-   - Quem se cadastra passa pelo onboarding para informar nome, área de interesse e competências.
+   - No cadastro, passa pelo onboarding para informar nome, área de interesse e competências.
 
 2. **Explorar oportunidades**
    - Acessa a lista de vagas.
@@ -98,12 +106,12 @@ A página inicial apresenta os dois caminhos. No login/cadastro, a pessoa escolh
    - No cadastro, passa pelo onboarding com dados da instituição e área de atuação.
 
 2. **Painel da organização**
-   - Visualiza a oportunidade ativa e a distribuição dos candidatos por status.
+   - Visualiza oportunidades ativas e a distribuição dos candidatos por status.
    - Acessa a lista de candidatos para revisar cada perfil, portfólio e mensagem de candidatura.
 
-3. **Publicar uma oportunidade**
+3. **Publicar e dar visibilidade a oportunidades**
    - Cria uma nova vaga com título, descrição, modalidade, duração e competências desejadas.
-   - Ao publicar, retorna ao painel da organização.
+   - Pode selecionar **Destacar vaga** no painel para promover uma oportunidade por sete dias. O fluxo demonstra o preço de R$ 29, benefícios e confirmação visual do destaque.
 
 4. **Revisar candidatos**
    - Abre o perfil de cada candidato.
@@ -114,12 +122,27 @@ A página inicial apresenta os dois caminhos. No login/cadastro, a pessoa escolh
    - Acessa Perfil pela navegação ou pelo avatar.
    - Consulta apresentação, áreas de atuação, indicadores de impacto, canais de contato e avaliações recebidas.
    - Gerencia visualmente membros da equipe e oportunidades publicadas.
-   - Pode editar as informações institucionais pelo modal de edição.
+   - Pode editar informações institucionais pelo modal de edição.
 
-6. **Mensagens, notificações e avaliações**
+6. **Contratar um plano institucional**
+   - Acessa **Plano** pela navegação da Organização ou pelos CTAs do painel.
+   - Compara o plano Gratuito com o Plano Institucional.
+   - Alterna entre cobrança mensal (R$ 99/mês) e anual (R$ 79/mês).
+   - Preenche um formulário demonstrativo com dados de faturamento e confirma a solicitação.
+
+7. **Mensagens, notificações e avaliações**
    - Conversa com candidatos no chat e retorna ao painel pelo botão contextual.
-   - Recebe notificações relacionadas a novas candidaturas, conversas e avaliações.
+   - Recebe notificações relacionadas a candidaturas, conversas e avaliações.
    - Avalia a colaboração após a conclusão de um projeto.
+
+## Monetização demonstrada
+
+| Recurso | Público | Demonstração no protótipo |
+| --- | --- | --- |
+| Plano Institucional | Organizações | Plano pago com mais oportunidades ativas, destaques mensais, métricas, equipe e selo de verificação. |
+| Destaque de vaga | Organizações | Impulsionamento de uma vaga por sete dias, com selo visual e posição prioritária na busca. |
+
+Os preços e a contratação existem apenas para demonstrar o fluxo de produto. Nenhuma cobrança é processada.
 
 ## Estrutura principal
 
@@ -134,6 +157,7 @@ src/
 
 ## Limitações do protótipo
 
-- A sessão, os dados dos formulários e as mensagens não persistem após recarregar a página.
-- O login é uma simulação para demonstrar os caminhos de cada perfil.
-- Não há controle de permissão no servidor; a separação de perfis é visual e de navegação.
+- Sessão, formulários, mensagens, destaques e solicitações de plano não persistem após recarregar a página.
+- Login, recuperação de senha e controle de perfil são simulações de interface.
+- Não há controle de permissões no servidor; a separação de perfis é visual e de navegação.
+- Não há integração com gateway de pagamento, emissão de cobrança ou e-mail transacional.
