@@ -17,6 +17,7 @@ const orgNav = [
   { label: "Painel", screen: "org-panel" as Screen },
   { label: "Nova Oportunidade", screen: "post-opportunity" as Screen },
   { label: "Perfil", screen: "org-profile" as Screen },
+  { label: "Plano", screen: "institutional-plan" as Screen },
 ];
 
 export default function Header({ navigate, role, screen }: HeaderProps) {

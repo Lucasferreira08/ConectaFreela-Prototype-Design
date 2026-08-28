@@ -14,6 +14,7 @@ import Notifications from "./pages/Notifications";
 import ApplicationStatus from "./pages/ApplicationStatus";
 import Reviews from "./pages/Reviews";
 import OrgProfile from "./pages/OrgProfile";
+import InstitutionalPlan from "./pages/InstitutionalPlan";
 import Header from "./components/Header";
 
 export type Screen =
@@ -31,7 +32,8 @@ export type Screen =
   | "notifications"
   | "application-status"
   | "reviews"
-  | "org-profile";
+  | "org-profile"
+  | "institutional-plan";
 
 export type UserRole = "talent" | "org" | null;
 export type AuthMode = "login" | "signup";
@@ -89,6 +91,7 @@ export default function App() {
     "application-status": <ApplicationStatus navigate={navigate} />,
     reviews: <Reviews navigate={navigate} role={state.role} />,
     "org-profile": <OrgProfile navigate={navigate} />,
+    "institutional-plan": <InstitutionalPlan navigate={navigate} />,
   };
 
   const showHeader = !["landing", "auth", "onboarding"].includes(state.screen);
