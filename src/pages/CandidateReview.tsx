@@ -41,7 +41,7 @@ export default function CandidateReview({ navigate, candidateId }: Props) {
         <div className="lg:col-span-2 space-y-6">
           {/* Header */}
           <div className="flex items-start gap-4">
-            <div className="w-16 h-16 rounded-2xl bg-gray-100 flex items-center justify-center text-gray-600 font-semibold text-xl flex-shrink-0">
+            <div className="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-gray-600 font-semibold text-xl flex-shrink-0">
               {candidate.avatar}
             </div>
             <div>
@@ -98,7 +98,7 @@ export default function CandidateReview({ navigate, candidateId }: Props) {
           <div>
             <h2 className="text-sm font-semibold text-gray-700 mb-2">Notas internas</h2>
             <textarea
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 resize-none transition-all"
+              className="w-full border border-gray-200 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 resize-none transition-all"
               rows={3}
               placeholder="Adicione observações visíveis apenas para sua equipe..."
               value={note}
@@ -109,7 +109,7 @@ export default function CandidateReview({ navigate, candidateId }: Props) {
 
         {/* Action sidebar */}
         <div className="space-y-4">
-          <div className="border border-gray-100 rounded-2xl p-6 sticky top-20">
+          <div className="border border-gray-100 rounded-xl p-6 sticky top-20">
             <h2 className="text-sm font-semibold text-gray-700 mb-4">Atualizar status</h2>
 
             <div className="space-y-2 mb-6">
@@ -117,7 +117,7 @@ export default function CandidateReview({ navigate, candidateId }: Props) {
                 <button
                   key={s}
                   onClick={() => handleSave(s)}
-                  className={`w-full py-3 rounded-xl text-sm font-medium border transition-all text-left px-4 flex items-center justify-between ${
+                  className={`w-full py-3 rounded-md text-sm font-medium border transition-all text-left px-4 flex items-center justify-between ${
                     status === s
                       ? s === "Aprovado"
                         ? "bg-emerald-600 text-white border-emerald-600"
@@ -148,7 +148,7 @@ export default function CandidateReview({ navigate, candidateId }: Props) {
               <p className="text-sm font-medium text-gray-900">{candidate.availability}</p>
             </div>
             {status === "Aprovado" && (
-              <button onClick={() => navigate("messages")} className="w-full mt-4 bg-emerald-600 text-white py-3 rounded-xl text-sm font-medium hover:bg-emerald-700 transition-colors">
+              <button onClick={() => navigate("messages")} className="w-full mt-4 bg-emerald-600 text-white py-3 rounded-md text-sm font-medium hover:bg-emerald-700 transition-colors">
                 Iniciar conversa
               </button>
             )}

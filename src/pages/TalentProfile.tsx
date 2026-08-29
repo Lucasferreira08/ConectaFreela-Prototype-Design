@@ -10,14 +10,14 @@ const allSkills = ["React", "TypeScript", "Node.js", "Python", "SQL", "Figma", "
 export default function TalentProfile({ navigate }: Props) {
   const [saved, setSaved] = useState(false);
   const [form, setForm] = useState({
-    name: "Mariana Costa",
-    area: "Ciência da Computação",
-    university: "USP — 6º semestre",
+    name: "Reyna Bjorn",
+    area: "Engenharia da Computação",
+    university: "UNIVASF — 6º semestre",
     bio: "Desenvolvedora front-end apaixonada por interfaces e dados. Busco projetos que combinem tecnologia e impacto social.",
     skills: ["React", "TypeScript", "Node.js"],
     availability: "10h/semana",
-    portfolio1: "github.com/marianac",
-    portfolio2: "marianacosta.dev",
+    portfolio1: "github.com/Reyna",
+    portfolio2: "Reyna.dev",
   });
 
   const toggleSkill = (s: string) => {
@@ -47,7 +47,7 @@ export default function TalentProfile({ navigate }: Props) {
       <div className="space-y-6">
         {/* Avatar area */}
         <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-2xl bg-emerald-100 flex items-center justify-center text-2xl font-semibold text-emerald-700">
+          <div className="w-16 h-16 rounded-lg bg-emerald-100 flex items-center justify-center text-2xl font-semibold text-emerald-700">
             MC
           </div>
           <div>
@@ -63,7 +63,7 @@ export default function TalentProfile({ navigate }: Props) {
           <div>
             <label className="block text-xs font-medium text-gray-600 mb-1.5">Nome completo</label>
             <input
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all"
+              className="w-full border border-gray-200 rounded-md px-4 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all"
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
             />
@@ -71,7 +71,7 @@ export default function TalentProfile({ navigate }: Props) {
           <div>
             <label className="block text-xs font-medium text-gray-600 mb-1.5">Área de atuação</label>
             <select
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all bg-white"
+              className="w-full border border-gray-200 rounded-md px-4 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all bg-white"
               value={form.area}
               onChange={(e) => setForm((f) => ({ ...f, area: e.target.value }))}
             >
@@ -87,7 +87,7 @@ export default function TalentProfile({ navigate }: Props) {
           <div>
             <label className="block text-xs font-medium text-gray-600 mb-1.5">Universidade / Semestre</label>
             <input
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all"
+              className="w-full border border-gray-200 rounded-md px-4 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all"
               value={form.university}
               onChange={(e) => setForm((f) => ({ ...f, university: e.target.value }))}
             />
@@ -95,7 +95,7 @@ export default function TalentProfile({ navigate }: Props) {
           <div>
             <label className="block text-xs font-medium text-gray-600 mb-1.5">Disponibilidade semanal</label>
             <select
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all bg-white"
+              className="w-full border border-gray-200 rounded-md px-4 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all bg-white"
               value={form.availability}
               onChange={(e) => setForm((f) => ({ ...f, availability: e.target.value }))}
             >
@@ -110,7 +110,7 @@ export default function TalentProfile({ navigate }: Props) {
         <div>
           <label className="block text-xs font-medium text-gray-600 mb-1.5">Mini bio</label>
           <textarea
-            className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all resize-none"
+            className="w-full border border-gray-200 rounded-md px-4 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all resize-none"
             rows={3}
             value={form.bio}
             onChange={(e) => setForm((f) => ({ ...f, bio: e.target.value }))}
@@ -144,13 +144,13 @@ export default function TalentProfile({ navigate }: Props) {
           <div className="space-y-2">
             <input
               placeholder="github.com/seuusuario"
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all"
+              className="w-full border border-gray-200 rounded-md px-4 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all"
               value={form.portfolio1}
               onChange={(e) => setForm((f) => ({ ...f, portfolio1: e.target.value }))}
             />
             <input
               placeholder="seu-portfolio.dev (opcional)"
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all"
+              className="w-full border border-gray-200 rounded-md px-4 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all"
               value={form.portfolio2}
               onChange={(e) => setForm((f) => ({ ...f, portfolio2: e.target.value }))}
             />
@@ -161,7 +161,7 @@ export default function TalentProfile({ navigate }: Props) {
         <div className="flex items-center gap-3 pt-2">
           <button
             onClick={handleSave}
-            className={`flex-1 py-3.5 rounded-xl font-medium text-sm transition-all flex items-center justify-center gap-2 ${
+            className={`flex-1 py-3.5 rounded-md font-medium text-sm transition-all flex items-center justify-center gap-2 ${
               saved
                 ? "bg-emerald-50 text-emerald-600 border border-emerald-200"
                 : "bg-emerald-600 text-white hover:bg-emerald-700"

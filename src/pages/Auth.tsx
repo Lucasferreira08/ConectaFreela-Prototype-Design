@@ -30,16 +30,15 @@ export default function Auth({ navigate, initialRole, initialMode }: Props) {
   };
 
   return (
-    <main className="min-h-screen bg-[#f7faf8] grid lg:grid-cols-2">
-      <section className="hidden lg:flex flex-col justify-between p-12 bg-[#0a1a12] text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "linear-gradient(#4ade80 1px, transparent 1px), linear-gradient(90deg, #4ade80 1px, transparent 1px)", backgroundSize: "48px 48px" }} />
+    <main className="min-h-screen bg-gray-50 grid lg:grid-cols-2">
+      <section className="hidden lg:flex flex-col justify-between p-12 bg-ink text-white relative overflow-hidden">
         <BrandLogo light />
         <div className="relative max-w-md">
-          <p className="text-emerald-300 text-sm font-medium mb-4">Talento encontra impacto</p>
-          <h1 className="text-5xl leading-[1.02]" style={{ fontFamily: "'Instrument Serif', serif" }}>Boas conexões começam com uma conversa.</h1>
-          <p className="mt-6 text-white/65 leading-relaxed">Encontre projetos que combinam com seu momento e construa experiências que ficam no portfólio.</p>
+          <p className="text-emerald-300 text-sm font-medium mb-4">Estudantes, laboratórios, ONGs e empresas juniores</p>
+          <h1 className="text-5xl leading-[1.02]" style={{ fontFamily: "'Instrument Serif', serif" }}>Um lugar para candidaturas e projetos reais.</h1>
+          <p className="mt-6 text-white/65 leading-relaxed">Veja oportunidades ativas, converse com organizações e acompanhe cada candidatura em um só painel.</p>
         </div>
-        <p className="relative text-xs text-white/40">ConectaFreela · oportunidades que movimentam ideias</p>
+        <p className="relative text-xs text-white/40">ConectaFreela · plataforma de oportunidades acadêmicas e sociais</p>
       </section>
 
       <section className="relative flex items-center justify-center p-6 sm:p-10">
@@ -62,8 +61,8 @@ export default function Auth({ navigate, initialRole, initialMode }: Props) {
               <h2 className="text-4xl text-gray-900 mt-2" style={{ fontFamily: "'Instrument Serif', serif" }}>Recupere sua senha</h2>
 
               {recoverySent ? (
-                <div className="mt-8 rounded-2xl border border-emerald-100 bg-emerald-50 p-5">
-                  <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center mb-3">
+                <div className="mt-8 rounded-xl border border-emerald-100 bg-emerald-50 p-5">
+                  <div className="w-9 h-9 rounded-lg bg-emerald-600 text-white flex items-center justify-center mb-3">
                     <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 12 4.5 4.5L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                   </div>
                   <p className="text-sm font-semibold text-emerald-800">Instruções enviadas</p>
@@ -72,8 +71,11 @@ export default function Auth({ navigate, initialRole, initialMode }: Props) {
               ) : (
                 <form onSubmit={sendRecovery} className="mt-8 space-y-4">
                   <p className="text-sm text-gray-500 leading-relaxed">Informe seu e-mail e enviaremos as instruções para redefinir sua senha.</p>
-                  <input required type="email" placeholder="E-mail" className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-emerald-200" />
-                  <button className="w-full rounded-xl bg-emerald-600 py-3 text-sm font-medium text-white hover:bg-emerald-700 transition-colors">Enviar instruções</button>
+                  <div>
+                    <label htmlFor="recovery-email" className="block text-xs font-medium text-gray-600 mb-1.5">E-mail</label>
+                    <input id="recovery-email" required type="email" placeholder="voce@exemplo.com" className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-emerald-200" />
+                  </div>
+                  <button className="w-full rounded-md bg-emerald-600 py-3 text-sm font-medium text-white hover:bg-emerald-700 transition-colors">Enviar instruções</button>
                 </form>
               )}
 
@@ -87,17 +89,26 @@ export default function Auth({ navigate, initialRole, initialMode }: Props) {
               <form onSubmit={submit} className="mt-8 space-y-4">
                 <div className="grid grid-cols-2 gap-3 mb-6">
                   {([ ["talent", "Sou talento"], ["org", "Sou organização"] ] as const).map(([value, label]) => (
-                    <button type="button" key={value} onClick={() => setRole(value)} className={`rounded-xl border p-3 text-sm font-medium transition-colors ${role === value ? "border-emerald-600 bg-emerald-50 text-emerald-700" : "border-gray-200 text-gray-500 hover:border-gray-300"}`}>{label}</button>
+                    <button type="button" key={value} onClick={() => setRole(value)} className={`rounded-md border p-3 text-sm font-medium transition-colors ${role === value ? "border-emerald-600 bg-emerald-50 text-emerald-700" : "border-gray-200 text-gray-500 hover:border-gray-300"}`}>{label}</button>
                   ))}
                 </div>
 
-                {mode === "signup" && <input required placeholder="Seu nome ou organização" className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-emerald-200" />}
-                <input required type="email" placeholder="E-mail" className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-emerald-200" />
+                {mode === "signup" && (
+                  <div>
+                    <label htmlFor="signup-name" className="block text-xs font-medium text-gray-600 mb-1.5">{role === "org" ? "Nome da organização" : "Nome completo"}</label>
+                    <input id="signup-name" required placeholder={role === "org" ? "Ex: LabTech UFMG" : "Ex: Mariana Costa"} className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-emerald-200" />
+                  </div>
+                )}
                 <div>
-                  <input required type="password" placeholder="Senha" className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-emerald-200" />
+                  <label htmlFor="auth-email" className="block text-xs font-medium text-gray-600 mb-1.5">E-mail</label>
+                  <input id="auth-email" required type="email" placeholder="voce@exemplo.com" className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-emerald-200" />
+                </div>
+                <div>
+                  <label htmlFor="auth-password" className="block text-xs font-medium text-gray-600 mb-1.5">Senha</label>
+                  <input id="auth-password" required type="password" placeholder="Mínimo 8 caracteres" className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-emerald-200" />
                   {mode === "login" && <button type="button" onClick={() => setRecoveringPassword(true)} className="mt-2 text-xs font-medium text-emerald-700 hover:text-emerald-800">Esqueci minha senha</button>}
                 </div>
-                <button className="w-full rounded-xl bg-emerald-600 py-3 text-sm font-medium text-white hover:bg-emerald-700 transition-colors">{mode === "login" ? "Entrar" : "Criar conta"}</button>
+                <button className="w-full rounded-md bg-emerald-600 py-3 text-sm font-medium text-white hover:bg-emerald-700 transition-colors">{mode === "login" ? "Entrar" : "Criar conta"}</button>
               </form>
 
               <p className="mt-6 text-center text-sm text-gray-500">

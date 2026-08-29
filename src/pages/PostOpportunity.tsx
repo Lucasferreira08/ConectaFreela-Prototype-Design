@@ -51,7 +51,7 @@ export default function PostOpportunity({ navigate }: Props) {
           <label className="block text-xs font-medium text-gray-600 mb-1.5">Título da oportunidade *</label>
           <input
             placeholder="Ex: Desenvolvedor React para plataforma educacional"
-            className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all"
+            className="w-full border border-gray-200 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all"
             value={form.title}
             onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))}
           />
@@ -62,7 +62,7 @@ export default function PostOpportunity({ navigate }: Props) {
           <div>
             <label className="block text-xs font-medium text-gray-600 mb-1.5">Categoria *</label>
             <select
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all bg-white"
+              className="w-full border border-gray-200 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all bg-white"
               value={form.category}
               onChange={(e) => setForm((f) => ({ ...f, category: e.target.value }))}
             >
@@ -78,7 +78,7 @@ export default function PostOpportunity({ navigate }: Props) {
                 <button
                   key={t}
                   onClick={() => setForm((f) => ({ ...f, type: t }))}
-                  className={`flex-1 py-3 rounded-xl text-sm font-medium border transition-all ${
+                  className={`flex-1 py-3 rounded-md text-sm font-medium border transition-all ${
                     form.type === t
                       ? t === "Voluntário"
                         ? "bg-emerald-600 text-white border-emerald-600"
@@ -98,7 +98,7 @@ export default function PostOpportunity({ navigate }: Props) {
           <div>
             <label className="block text-xs font-medium text-gray-600 mb-1.5">Duração</label>
             <select
-              className="w-full border border-gray-200 rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all bg-white"
+              className="w-full border border-gray-200 rounded-md px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all bg-white"
               value={form.duration}
               onChange={(e) => setForm((f) => ({ ...f, duration: e.target.value }))}
             >
@@ -110,7 +110,7 @@ export default function PostOpportunity({ navigate }: Props) {
           <div>
             <label className="block text-xs font-medium text-gray-600 mb-1.5">Carga semanal</label>
             <select
-              className="w-full border border-gray-200 rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all bg-white"
+              className="w-full border border-gray-200 rounded-md px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all bg-white"
               value={form.hours}
               onChange={(e) => setForm((f) => ({ ...f, hours: e.target.value }))}
             >
@@ -123,7 +123,7 @@ export default function PostOpportunity({ navigate }: Props) {
             <label className="block text-xs font-medium text-gray-600 mb-1.5">Prazo de inscrição</label>
             <input
               type="date"
-              className="w-full border border-gray-200 rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all"
+              className="w-full border border-gray-200 rounded-md px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all"
               value={form.deadline}
               onChange={(e) => setForm((f) => ({ ...f, deadline: e.target.value }))}
             />
@@ -134,7 +134,7 @@ export default function PostOpportunity({ navigate }: Props) {
         <div>
           <label className="block text-xs font-medium text-gray-600 mb-1.5">Descrição *</label>
           <textarea
-            className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 resize-none transition-all"
+            className="w-full border border-gray-200 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 resize-none transition-all"
             rows={4}
             placeholder="Descreva o projeto, o que o talento vai fazer, o impacto esperado e os benefícios da participação..."
             value={form.description}
@@ -184,7 +184,7 @@ export default function PostOpportunity({ navigate }: Props) {
         <button
           onClick={handlePost}
           disabled={!isValid || saved}
-          className={`w-full py-3.5 rounded-xl font-medium text-sm transition-all flex items-center justify-center gap-2 ${
+          className={`w-full py-3.5 rounded-md font-medium text-sm transition-all flex items-center justify-center gap-2 ${
             saved
               ? "bg-emerald-50 text-emerald-600 border border-emerald-200"
               : isValid
