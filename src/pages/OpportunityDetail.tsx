@@ -91,7 +91,7 @@ export default function OpportunityDetail({ navigate, opportunityId }: Props) {
         {/* Sidebar */}
         <div className="space-y-4">
           {/* Apply card */}
-          <div className="border border-gray-100 rounded-2xl p-6">
+          <div className="border border-gray-100 rounded-xl p-6">
             <div className="flex items-center justify-between mb-4">
               <p className="text-sm font-medium text-gray-700">Candidatar-se</p>
               <span className="text-xs text-gray-400">{op.applicants} candidatos</span>
@@ -123,7 +123,7 @@ export default function OpportunityDetail({ navigate, opportunityId }: Props) {
             ) : (
               <button
                 onClick={() => setShowModal(true)}
-                className="w-full bg-emerald-600 text-white py-3 rounded-xl font-medium text-sm hover:bg-emerald-700 transition-colors"
+                className="w-full bg-emerald-600 text-white py-3 rounded-md font-medium text-sm hover:bg-emerald-700 transition-colors"
               >
                 Candidatar-se agora
               </button>
@@ -132,7 +132,7 @@ export default function OpportunityDetail({ navigate, opportunityId }: Props) {
             {applied && (
               <button
                 onClick={() => navigate("my-applications")}
-                className="w-full mt-2 border border-gray-200 text-gray-600 py-3 rounded-xl font-medium text-sm hover:bg-gray-50 transition-colors"
+                className="w-full mt-2 border border-gray-200 text-gray-600 py-3 rounded-md font-medium text-sm hover:bg-gray-50 transition-colors"
               >
                 Ver minhas candidaturas
               </button>
@@ -140,7 +140,7 @@ export default function OpportunityDetail({ navigate, opportunityId }: Props) {
           </div>
 
           {/* Org info */}
-          <div className="border border-gray-100 rounded-2xl p-5">
+          <div className="border border-gray-100 rounded-xl p-5">
             <p className="text-xs font-medium text-gray-500 mb-3">Sobre a organização</p>
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-600 font-semibold text-xs">
@@ -157,8 +157,8 @@ export default function OpportunityDetail({ navigate, opportunityId }: Props) {
 
       {/* Apply Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl p-8 w-full max-w-lg shadow-2xl">
+        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl p-8 w-full max-w-lg shadow-lg">
             <h2 className="text-xl font-semibold text-gray-900 mb-1" style={{ fontFamily: "'Instrument Serif', serif" }}>
               Escreva sua mensagem
             </h2>
@@ -166,8 +166,10 @@ export default function OpportunityDetail({ navigate, opportunityId }: Props) {
               Apresente-se brevemente e conte por que você é a pessoa certa para esta oportunidade.
             </p>
 
+            <label htmlFor="apply-message" className="block text-xs font-medium text-gray-600 mb-1.5">Sua mensagem</label>
             <textarea
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 resize-none transition-all"
+              id="apply-message"
+              className="w-full border border-gray-200 rounded-md px-4 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 resize-none transition-all"
               rows={5}
               placeholder="Ex: Tenho 2 anos de experiência em React e já trabalhei com dashboards de dados em projetos acadêmicos. Tenho disponibilidade imediata e muito interesse nessa área..."
               value={message}
@@ -178,14 +180,14 @@ export default function OpportunityDetail({ navigate, opportunityId }: Props) {
             <div className="flex gap-3">
               <button
                 onClick={() => setShowModal(false)}
-                className="flex-1 border border-gray-200 text-gray-600 py-3 rounded-xl font-medium text-sm hover:bg-gray-50 transition-colors"
+                className="flex-1 border border-gray-200 text-gray-600 py-3 rounded-md font-medium text-sm hover:bg-gray-50 transition-colors"
               >
                 Cancelar
               </button>
               <button
                 onClick={handleApply}
                 disabled={message.trim().length < 10}
-                className="flex-1 bg-emerald-600 text-white py-3 rounded-xl font-medium text-sm hover:bg-emerald-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                className="flex-1 bg-emerald-600 text-white py-3 rounded-md font-medium text-sm hover:bg-emerald-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Enviar candidatura
               </button>

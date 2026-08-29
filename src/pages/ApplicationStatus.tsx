@@ -1,4 +1,58 @@
 import { Screen } from "../App";
-interface Props { navigate: (screen: Screen, extras?: any) => void; }
-const steps = [{title:"Candidatura enviada", text:"Sua apresentação foi enviada para LabTech UFMG.", date:"12 ago"},{title:"Perfil em análise", text:"A organização está conhecendo sua experiência e portfólio.", date:"14 ago"},{title:"Conversa iniciada", text:"Você recebeu uma mensagem da equipe. Responda para avançar.", date:"Hoje", active:true},{title:"Decisão da organização", text:"Você será avisado assim que houver uma atualização.", date:"Próximo passo"}];
-export default function ApplicationStatus({ navigate }: Props) { return <div className="max-w-3xl mx-auto px-6 py-10"><button onClick={()=>navigate("my-applications")} className="text-sm text-gray-400 hover:text-gray-700">← Voltar para candidaturas</button><div className="mt-8 rounded-3xl bg-[#0a1a12] p-7 text-white"><p className="text-xs text-emerald-300 font-medium uppercase tracking-wide">Acompanhamento</p><h1 className="text-3xl mt-2" style={{fontFamily:"'Instrument Serif', serif"}}>Desenvolvedor Front-end React</h1><p className="text-sm text-white/60 mt-2">LabTech UFMG · candidatura enviada em 12/08/2026</p></div><div className="mt-8 bg-white rounded-2xl border border-gray-100 p-6 sm:p-8"><h2 className="text-lg font-semibold text-gray-800">Em que etapa você está</h2><div className="mt-7 space-y-0">{steps.map((step,i)=><div key={step.title} className="flex gap-4"><div className="flex flex-col items-center"><span className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold ${step.active ? "bg-emerald-600 text-white ring-4 ring-emerald-100" : i < 2 ? "bg-emerald-100 text-emerald-700" : "bg-gray-100 text-gray-400"}`}>{i < 2 ? "✓" : i+1}</span>{i < steps.length-1 && <span className="w-px h-14 bg-gray-100"/>}</div><div className="pb-6"><div className="flex gap-3 items-center"><h3 className={`text-sm font-semibold ${step.active ? "text-emerald-700" : "text-gray-700"}`}>{step.title}</h3><span className="text-xs text-gray-400">{step.date}</span></div><p className="text-sm text-gray-500 mt-1">{step.text}</p>{step.active && <button onClick={()=>navigate("messages")} className="mt-3 rounded-lg bg-emerald-600 px-4 py-2 text-xs font-medium text-white">Responder mensagem</button>}</div></div>)}</div></div></div>; }
+
+interface Props {
+  navigate: (screen: Screen, extras?: any) => void;
+}
+
+const steps = [
+  { title: "Candidatura enviada", text: "Sua apresentação foi enviada para LabTech UFMG.", date: "12 ago" },
+  { title: "Perfil em análise", text: "A organização está conhecendo sua experiência e portfólio.", date: "14 ago" },
+  { title: "Conversa iniciada", text: "Você recebeu uma mensagem da equipe. Responda para avançar.", date: "Hoje", active: true },
+  { title: "Decisão da organização", text: "Você será avisado assim que houver uma atualização.", date: "Próximo passo" },
+];
+
+export default function ApplicationStatus({ navigate }: Props) {
+  return (
+    <div className="max-w-3xl mx-auto px-6 py-10">
+      <button onClick={() => navigate("my-applications")} className="text-sm text-gray-400 hover:text-gray-700">← Voltar para candidaturas</button>
+
+      <div className="mt-8 rounded-xl bg-ink p-7 text-white">
+        <p className="text-xs text-emerald-300 font-medium uppercase tracking-wide">Acompanhamento</p>
+        <h1 className="text-3xl mt-2" style={{ fontFamily: "'Instrument Serif', serif" }}>Desenvolvedor Front-end React</h1>
+        <p className="text-sm text-white/60 mt-2">LabTech UFMG · candidatura enviada em 12/08/2026</p>
+      </div>
+
+      <div className="mt-8 bg-white rounded-xl border border-gray-100 p-6 sm:p-8">
+        <h2 className="text-lg font-semibold text-gray-800">Em que etapa você está</h2>
+        <div className="mt-7 space-y-0">
+          {steps.map((step, i) => (
+            <div key={step.title} className="flex gap-4">
+              <div className="flex flex-col items-center">
+                <span className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold ${step.active ? "bg-emerald-600 text-white ring-4 ring-emerald-100" : i < 2 ? "bg-emerald-100 text-emerald-700" : "bg-gray-100 text-gray-400"}`}>
+                  {i < 2 ? (
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8L6.5 11.5L13 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  ) : (
+                    i + 1
+                  )}
+                </span>
+                {i < steps.length - 1 && <span className="w-px h-14 bg-gray-100" />}
+              </div>
+              <div className="pb-6">
+                <div className="flex gap-3 items-center">
+                  <h3 className={`text-sm font-semibold ${step.active ? "text-emerald-700" : "text-gray-700"}`}>{step.title}</h3>
+                  <span className="text-xs text-gray-400">{step.date}</span>
+                </div>
+                <p className="text-sm text-gray-500 mt-1">{step.text}</p>
+                {step.active && (
+                  <button onClick={() => navigate("messages")} className="mt-3 rounded-md bg-emerald-600 px-4 py-2 text-xs font-medium text-white">
+                    Responder mensagem
+                  </button>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
