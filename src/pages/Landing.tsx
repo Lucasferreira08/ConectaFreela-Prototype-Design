@@ -1,291 +1,363 @@
-import { Screen } from "../App";
-import BrandLogo from "../components/BrandLogo";
+import { Screen } from "../App"
+import BrandLogo from "../components/BrandLogo"
+import dataLabImage from "../assets/landing/data-lab.webp"
+import designWorkshopImage from "../assets/landing/design-workshop.webp"
+import juniorEnterpriseImage from "../assets/landing/junior-enterprise.webp"
+import socialProjectImage from "../assets/landing/social-project.webp"
+import teamProjectImage from "../assets/landing/team-project.webp"
 
 interface Props {
-  navigate: (screen: Screen, extras?: any) => void;
+  navigate: (screen: Screen, extras?: any) => void
+}
+
+const talentSteps = [
+  [
+    "01",
+    "Crie seu perfil",
+    "Apresente suas competências, portfólio e disponibilidade.",
+  ],
+  [
+    "02",
+    "Encontre um projeto",
+    "Filtre oportunidades por área, formato e carga horária.",
+  ],
+  ["03", "Candidate-se", "Conte à organização como você pode contribuir."],
+  [
+    "04",
+    "Acompanhe o processo",
+    "Consulte cada atualização no seu painel pessoal.",
+  ],
+]
+
+const organizationSteps = [
+  [
+    "01",
+    "Publique a necessidade",
+    "Explique o projeto, as competências e o tempo necessário.",
+  ],
+  [
+    "02",
+    "Receba candidaturas",
+    "Conheça estudantes interessados no desafio proposto.",
+  ],
+  [
+    "03",
+    "Analise os perfis",
+    "Compare experiência, portfólio e disponibilidade.",
+  ],
+  [
+    "04",
+    "Forme sua equipe",
+    "Converse com os candidatos e atualize o processo.",
+  ],
+]
+
+const audiences = [
+  [
+    "Estudantes",
+    "Experiência prática ainda na graduação.",
+    teamProjectImage,
+    "Estudantes reunidos em torno de um protótipo de tecnologia sustentável",
+  ],
+  [
+    "Laboratórios",
+    "Competências para pesquisas aplicadas.",
+    dataLabImage,
+    "Estudante analisando dados em um laboratório de computação",
+  ],
+  [
+    "ONGs",
+    "Pessoas qualificadas para projetos sociais.",
+    socialProjectImage,
+    "Equipe de projeto social trabalhando em uma horta comunitária",
+  ],
+  [
+    "Empresas juniores",
+    "Novos talentos para demandas de clientes.",
+    juniorEnterpriseImage,
+    "Equipe universitária reunida com representante de uma organização",
+  ],
+]
+
+function StepList({
+  steps,
+  accent,
+}: {
+  steps: string[][]
+  accent: "green" | "dark"
+}) {
+  return (
+    <ol>
+      {steps.map(([number, title, description]) => (
+        <li
+          key={number}
+          className="cf-step-row grid gap-3 border-b border-gray-200 py-5"
+        >
+          <span
+            className={`cf-display text-xl ${
+              accent === "green" ? "text-emerald-700" : "text-[#0a1a12]"
+            }`}
+          >
+            {number}
+          </span>
+          <div>
+            <p className="text-sm font-semibold text-gray-900">{title}</p>
+            <p className="mt-1 text-sm leading-6 text-gray-500">
+              {description}
+            </p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  )
 }
 
 export default function Landing({ navigate }: Props) {
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      {/* Nav */}
-      <header className="absolute top-0 left-0 right-0 z-50">
-        <div className="max-w-6xl mx-auto px-8 h-18 flex items-center justify-between pt-6">
-          <BrandLogo light />
-          <div className="flex items-center gap-2">
+    <div className="min-h-screen overflow-x-hidden bg-[#f7f8f4] text-gray-900">
+      <header className="border-b border-gray-200/80 bg-[#f7f8f4]">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
+          <BrandLogo />
+          <nav
+            aria-label="Navegação principal"
+            className="flex items-center gap-1 sm:gap-3"
+          >
             <button
-              onClick={() => navigate("auth", { role: null, authMode: "login" })}
-              className="text-sm text-white/70 hover:text-white transition-colors px-4 py-2"
+              onClick={() =>
+                navigate("auth", { role: null, authMode: "login" })
+              }
+              className="px-3 py-2 text-sm font-medium text-gray-600 transition-colors hover:text-gray-950 sm:px-4"
             >
               Entrar
             </button>
             <button
-              onClick={() => navigate("auth", { role: null, authMode: "signup" })}
-              className="text-sm bg-white text-gray-900 px-5 py-2.5 rounded-xl hover:bg-emerald-50 transition-colors font-medium"
+              onClick={() =>
+                navigate("auth", { role: null, authMode: "signup" })
+              }
+              className="rounded-lg bg-[#0a1a12] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#065f46] sm:px-5"
             >
               Cadastrar grátis
             </button>
-          </div>
+          </nav>
         </div>
       </header>
 
-      {/* Hero — dark full bleed */}
-      <section
-        className="relative overflow-hidden flex flex-col justify-end"
-        style={{
-          background: "linear-gradient(135deg, #0a1a12 0%, #0d1f17 40%, #071310 100%)",
-          minHeight: "92vh",
-        }}
-      >
-        {/* Grid texture overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#4ade80 1px, transparent 1px), linear-gradient(90deg, #4ade80 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
-
-        {/* Glow orb */}
-        <div
-          className="absolute top-1/4 right-1/4 rounded-full pointer-events-none"
-          style={{
-            width: 600,
-            height: 600,
-            background: "radial-gradient(circle, rgba(16,185,129,0.12) 0%, transparent 70%)",
-            transform: "translate(30%, -20%)",
-          }}
-        />
-
-        {/* Floating cards — decorative, top right */}
-        <div className="absolute top-32 right-8 lg:right-24 hidden lg:flex flex-col gap-3 w-72">
-          <div
-            className="bg-white/[0.06] backdrop-blur-sm border border-white/10 rounded-2xl p-4"
-            style={{ transform: "rotate(1.5deg)" }}
-          >
-            <div className="flex items-center justify-between mb-2.5">
-              <p className="text-[11px] text-emerald-400 font-medium">LabTech UFMG</p>
-              <span className="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full">Voluntário</span>
-            </div>
-            <p className="text-sm font-semibold text-white mb-3">Desenvolvedor Front-end React</p>
-            <div className="flex gap-1.5 flex-wrap">
-              {["React", "TypeScript", "Tailwind"].map(s => (
-                <span key={s} className="text-[10px] bg-white/10 text-white/60 px-2 py-0.5 rounded-full">{s}</span>
-              ))}
-            </div>
-          </div>
-
-          <div
-            className="bg-white/[0.06] backdrop-blur-sm border border-white/10 rounded-2xl p-4 ml-6"
-            style={{ transform: "rotate(-1deg)" }}
-          >
-            <div className="flex items-center justify-between mb-2.5">
-              <p className="text-[11px] text-emerald-400 font-medium">ONG Raízes</p>
-              <span className="text-[10px] bg-white/10 text-white/50 border border-white/10 px-2 py-0.5 rounded-full">Voluntário</span>
-            </div>
-            <p className="text-sm font-semibold text-white mb-3">Designer de Identidade Visual</p>
-            <div className="flex gap-1.5 flex-wrap">
-              {["Figma", "Branding"].map(s => (
-                <span key={s} className="text-[10px] bg-white/10 text-white/60 px-2 py-0.5 rounded-full">{s}</span>
-              ))}
-            </div>
-          </div>
-
-          {/* Applied toast */}
-          <div className="flex items-center gap-2.5 bg-emerald-500 text-white rounded-xl px-4 py-3 text-xs font-medium self-start ml-2 shadow-lg shadow-emerald-900/40">
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-              <path d="M2 6.5L5 9.5L11 3.5" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            Candidatura enviada!
-          </div>
-        </div>
-
-        {/* Main copy */}
-        <div className="relative max-w-6xl mx-auto px-8 pb-20 w-full">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 text-xs text-emerald-400 border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1.5 rounded-full mb-10">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Plataforma em beta aberto · 200+ oportunidades ativas
-          </div>
-
-          <h1
-            className="text-white leading-none mb-8 max-w-3xl"
-            style={{ fontFamily: "'Instrument Serif', serif", fontSize: "clamp(3rem, 6vw, 5.5rem)" }}
-          >
-            Talento encontra{" "}
-            <br />
-            <em className="text-emerald-400 not-italic">propósito.</em>
-          </h1>
-
-          <p className="text-white/55 text-lg leading-relaxed mb-12 max-w-xl">
-            Estudantes, laboratórios, ONGs e empresas juniores em uma só plataforma.
-            Projetos reais. Portfólio verdadeiro. Conexões que importam.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-3">
-            <button
-              onClick={() => navigate("auth", { role: "talent", authMode: "signup" })}
-              className="flex items-center justify-center gap-2.5 bg-emerald-500 hover:bg-emerald-400 text-white px-7 py-4 rounded-xl font-medium transition-colors text-sm"
-            >
-              Sou Talento — ver oportunidades
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-            <button
-              onClick={() => navigate("auth", { role: "org", authMode: "signup" })}
-              className="flex items-center justify-center gap-2.5 border border-white/20 hover:border-white/40 text-white/80 hover:text-white px-7 py-4 rounded-xl font-medium transition-colors text-sm"
-            >
-              Sou Organização — publicar projeto
-            </button>
-          </div>
-
-          {/* Stats inline */}
-          <div className="flex gap-8 mt-14 border-t border-white/10 pt-8">
-            {[
-              { v: "200+", l: "oportunidades" },
-              { v: "840", l: "talentos" },
-              { v: "62", l: "organizações" },
-              { v: "4.8★", l: "avaliação" },
-            ].map(s => (
-              <div key={s.l}>
-                <p className="text-2xl font-semibold text-white">{s.v}</p>
-                <p className="text-xs text-white/40 mt-0.5">{s.l}</p>
+      <main>
+        <section className="cf-landing-hero mx-auto grid">
+          <div className="flex items-center px-5 py-14 sm:px-8 sm:py-20 lg:justify-end lg:py-16 lg:pl-8 lg:pr-14">
+            <div className="cf-landing-copy w-full lg:ml-auto">
+              <p className="mb-6 max-w-md text-sm font-medium leading-relaxed text-emerald-800">
+                Oportunidades acadêmicas e sociais em um só lugar
+              </p>
+              <h1 className="cf-display cf-landing-title text-[#0a1a12]">
+                Encontre projetos que precisam do que você sabe.
+              </h1>
+              <p className="mt-7 max-w-lg text-base leading-7 text-gray-600 sm:text-lg">
+                Conectamos estudantes a laboratórios, ONGs e empresas juniores
+                com oportunidades para aprender, colaborar e construir
+                portfólio.
+              </p>
+              <div className="mt-9 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
+                <button
+                  onClick={() =>
+                    navigate("auth", { role: "talent", authMode: "signup" })
+                  }
+                  className="rounded-lg bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-emerald-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700"
+                >
+                  Explorar oportunidades
+                </button>
+                <button
+                  onClick={() =>
+                    navigate("auth", { role: "org", authMode: "signup" })
+                  }
+                  className="py-2 text-sm font-semibold text-[#065f46] underline decoration-emerald-300 underline-offset-4 transition-colors hover:text-emerald-800"
+                >
+                  Publicar uma oportunidade →
+                </button>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Como funciona */}
-      <section className="py-24 px-8 max-w-6xl mx-auto w-full">
-        <div className="text-center mb-16">
-          <p className="text-xs font-medium text-emerald-600 tracking-widest uppercase mb-3">Como funciona</p>
-          <h2
-            className="text-4xl text-gray-900"
-            style={{ fontFamily: "'Instrument Serif', serif" }}
-          >
-            Simples para todos os lados
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Talent column */}
-          <div className="bg-gray-50 rounded-3xl p-8">
-            <div className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-100 px-3 py-1.5 rounded-full mb-6">
-              Para Talentos
             </div>
-            <div className="space-y-6">
-              {[
-                { n: "01", title: "Crie seu perfil", desc: "Competências, portfólio e disponibilidade em minutos." },
-                { n: "02", title: "Encontre oportunidades", desc: "Filtre por área, tipo e competência. Veja o que encaixa com você." },
-                { n: "03", title: "Candidate-se com uma mensagem", desc: "Sem burocracia. Apresente-se e espere o retorno." },
-                { n: "04", title: "Acompanhe suas candidaturas", desc: "Veja o status em tempo real no seu painel pessoal." },
-              ].map((step) => (
-                <div key={step.n} className="flex gap-4">
-                  <span className="text-xs font-semibold text-emerald-500 w-6 flex-shrink-0 pt-0.5">{step.n}</span>
-                  <div>
-                    <p className="text-sm font-semibold text-gray-900 mb-0.5">{step.title}</p>
-                    <p className="text-sm text-gray-500">{step.desc}</p>
-                  </div>
+          </div>
+
+          <div className="cf-landing-mosaic grid gap-2 px-5 pb-5 sm:px-8 sm:pb-8 lg:px-0 lg:pb-0">
+            <figure className="cf-mosaic-main relative overflow-hidden rounded-lg lg:rounded-none">
+              <img
+                src={teamProjectImage}
+                alt="Equipe diversa de estudantes desenvolvendo um projeto de tecnologia sustentável"
+                width="1536"
+                height="1024"
+                fetchPriority="high"
+                className="h-full w-full object-cover object-center"
+              />
+              <figcaption className="absolute bottom-3 left-3 max-w-[calc(100%-1.5rem)] bg-[#0a1a12] px-3 py-2 text-xs font-medium text-white sm:bottom-4 sm:left-4">
+                Projeto de tecnologia · equipe universitária
+              </figcaption>
+            </figure>
+            <figure className="cf-mosaic-data overflow-hidden rounded-lg lg:rounded-none">
+              <img
+                src={dataLabImage}
+                alt="Estudante desenvolvendo software e analisando dados em laboratório"
+                width="1024"
+                height="1536"
+                loading="lazy"
+                className="h-full w-full object-cover object-[48%_center]"
+              />
+            </figure>
+            <figure className="cf-mosaic-design overflow-hidden rounded-lg lg:rounded-none">
+              <img
+                src={designWorkshopImage}
+                alt="Designer apresentando conceitos visuais para colegas de projeto"
+                width="1536"
+                height="1024"
+                loading="lazy"
+                className="h-full w-full object-cover object-center"
+              />
+            </figure>
+            <figure className="cf-mosaic-social relative overflow-hidden rounded-lg lg:rounded-none">
+              <img
+                src={socialProjectImage}
+                alt="Integrantes de projeto social cuidando de uma horta comunitária"
+                width="1536"
+                height="1024"
+                loading="lazy"
+                className="h-full w-full object-cover object-center"
+              />
+              <figcaption className="absolute bottom-3 left-3 bg-white px-3 py-2 text-xs font-medium text-[#0a1a12]">
+                Impacto local · projeto social
+              </figcaption>
+            </figure>
+            <figure className="cf-mosaic-junior overflow-hidden">
+              <img
+                src={juniorEnterpriseImage}
+                alt="Equipe de empresa júnior reunida com representante de uma organização"
+                width="1024"
+                height="1536"
+                loading="lazy"
+                className="h-full w-full object-cover object-[center_42%]"
+              />
+            </figure>
+          </div>
+        </section>
+
+        <section className="border-y border-gray-200 bg-white px-5 py-20 sm:px-8 sm:py-28">
+          <div className="mx-auto max-w-6xl">
+            <div className="cf-process-intro grid gap-10 border-b border-gray-200 pb-12 md:items-end">
+              <h2 className="cf-display text-5xl leading-none tracking-[-0.025em] text-[#0a1a12] sm:text-6xl">
+                Dois caminhos. Um lugar para colaborar.
+              </h2>
+              <p className="max-w-xl text-base leading-7 text-gray-500 md:justify-self-end">
+                Quem quer aprender encontra desafios concretos. Quem tem um
+                projeto encontra pessoas dispostas a colocá-lo em prática.
+              </p>
+            </div>
+            <div className="grid gap-16 pt-12 lg:grid-cols-2 lg:gap-24">
+              <div>
+                <div className="mb-7 flex items-center justify-between border-b-2 border-emerald-600 pb-4">
+                  <h3 className="text-lg font-semibold text-[#0a1a12]">
+                    Para talentos
+                  </h3>
+                  <span className="text-xs font-medium uppercase tracking-[0.18em] text-emerald-700">
+                    Aprender fazendo
+                  </span>
                 </div>
+                <StepList steps={talentSteps} accent="green" />
+                <button
+                  onClick={() =>
+                    navigate("auth", { role: "talent", authMode: "signup" })
+                  }
+                  className="mt-7 text-sm font-semibold text-emerald-700 underline decoration-emerald-300 underline-offset-4"
+                >
+                  Criar perfil de talento →
+                </button>
+              </div>
+              <div>
+                <div className="mb-7 flex items-center justify-between border-b-2 border-[#0a1a12] pb-4">
+                  <h3 className="text-lg font-semibold text-[#0a1a12]">
+                    Para organizações
+                  </h3>
+                  <span className="text-xs font-medium uppercase tracking-[0.18em] text-gray-500">
+                    Tirar projetos do papel
+                  </span>
+                </div>
+                <StepList steps={organizationSteps} accent="dark" />
+                <button
+                  onClick={() =>
+                    navigate("auth", { role: "org", authMode: "signup" })
+                  }
+                  className="mt-7 text-sm font-semibold text-[#0a1a12] underline decoration-gray-300 underline-offset-4"
+                >
+                  Publicar uma oportunidade →
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[#f7f8f4] px-5 py-20 sm:px-8 sm:py-28">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-10 flex flex-col gap-4 border-b border-gray-300 pb-6 sm:flex-row sm:items-end sm:justify-between">
+              <h2 className="cf-display text-5xl leading-none tracking-[-0.025em] text-[#0a1a12] sm:text-6xl">
+                Feito para quem faz.
+              </h2>
+              <p className="max-w-sm text-sm leading-6 text-gray-500">
+                Diferentes contextos, conectados pela vontade de aprender e
+                gerar resultado concreto.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 gap-x-3 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+              {audiences.map(([label, description, image, alt], index) => (
+                <figure key={label}>
+                  <div className="cf-audience-image overflow-hidden bg-gray-200">
+                    <img
+                      src={image}
+                      alt={alt}
+                      width={index === 1 || index === 3 ? "1024" : "1536"}
+                      height={index === 1 || index === 3 ? "1536" : "1024"}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.025]"
+                    />
+                  </div>
+                  <figcaption className="border-t border-gray-300 pt-4">
+                    <p className="text-sm font-semibold text-[#0a1a12]">
+                      {label}
+                    </p>
+                    <p className="mt-1 text-sm leading-5 text-gray-500">
+                      {description}
+                    </p>
+                  </figcaption>
+                </figure>
               ))}
             </div>
-            <button
-              onClick={() => navigate("auth", { role: "talent", authMode: "signup" })}
-              className="mt-8 w-full bg-emerald-600 text-white py-3.5 rounded-xl text-sm font-medium hover:bg-emerald-700 transition-colors"
-            >
-              Criar perfil grátis
-            </button>
           </div>
+        </section>
 
-          {/* Org column */}
-          <div className="bg-gray-900 rounded-3xl p-8">
-            <div className="inline-flex items-center gap-2 text-xs font-semibold text-gray-300 bg-white/10 px-3 py-1.5 rounded-full mb-6">
-              Para Organizações
-            </div>
-            <div className="space-y-6">
-              {[
-                { n: "01", title: "Publique sua oportunidade", desc: "Descreva o projeto, habilidades e carga horária esperada." },
-                { n: "02", title: "Receba candidaturas", desc: "Talentos encontram sua vaga pelos filtros de busca." },
-                { n: "03", title: "Revise os candidatos", desc: "Veja perfil, portfólio e mensagem de cada candidato." },
-                { n: "04", title: "Atualize o status", desc: "Aprove, recuse ou mantenha em análise diretamente no painel." },
-              ].map((step) => (
-                <div key={step.n} className="flex gap-4">
-                  <span className="text-xs font-semibold text-emerald-400 w-6 flex-shrink-0 pt-0.5">{step.n}</span>
-                  <div>
-                    <p className="text-sm font-semibold text-white mb-0.5">{step.title}</p>
-                    <p className="text-sm text-white/50">{step.desc}</p>
-                  </div>
-                </div>
-              ))}
+        <section className="bg-[#065f46] px-5 py-16 text-white sm:px-8 sm:py-20">
+          <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 md:flex-row md:items-end">
+            <div>
+              <p className="mb-4 text-sm font-medium text-emerald-200">
+                Seu próximo projeto pode começar aqui.
+              </p>
+              <h2 className="cf-display max-w-2xl text-5xl leading-[0.98] tracking-[-0.025em] sm:text-6xl">
+                Transforme o que você sabe em experiência real.
+              </h2>
             </div>
             <button
-              onClick={() => navigate("auth", { role: "org", authMode: "signup" })}
-              className="mt-8 w-full border border-white/20 text-white py-3.5 rounded-xl text-sm font-medium hover:bg-white/10 transition-colors"
+              onClick={() =>
+                navigate("auth", { role: "talent", authMode: "signup" })
+              }
+              className="shrink-0 rounded-lg bg-white px-6 py-3.5 text-sm font-semibold text-[#065f46] transition-colors hover:bg-emerald-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
-              Publicar oportunidade
+              Explorar oportunidades
             </button>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
-      {/* Bento — quem usa */}
-      <section className="pb-24 px-8 max-w-6xl mx-auto w-full">
-        <p className="text-xs font-medium text-gray-400 tracking-widest uppercase mb-8 text-center">Feito para</p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {[
-            { icon: "🎓", label: "Estudantes", desc: "Experiência real ainda na graduação" },
-            { icon: "🔬", label: "Laboratórios", desc: "Apoio técnico para pesquisas aplicadas" },
-            { icon: "🌱", label: "ONGs", desc: "Voluntários qualificados para projetos sociais" },
-            { icon: "🚀", label: "Empresas Juniores", desc: "Talentos para demandas de clientes" },
-          ].map((item) => (
-            <div key={item.label} className="border border-gray-100 rounded-2xl p-5 hover:border-emerald-200 hover:bg-emerald-50/50 transition-all group">
-              <span className="text-2xl mb-3 block">{item.icon}</span>
-              <p className="text-sm font-semibold text-gray-900 mb-1 group-hover:text-emerald-700 transition-colors">{item.label}</p>
-              <p className="text-xs text-gray-400 leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA final */}
-      <section className="mx-8 mb-16 rounded-3xl overflow-hidden" style={{ background: "linear-gradient(135deg, #065f46, #047857)" }}>
-        <div className="px-12 py-16 flex flex-col md:flex-row items-center justify-between gap-8">
-          <div>
-            <h2
-              className="text-3xl text-white mb-2"
-              style={{ fontFamily: "'Instrument Serif', serif" }}
-            >
-              Pronto para começar?
-            </h2>
-            <p className="text-emerald-200/80 text-sm">É gratuito. Sem cartão de crédito.</p>
-          </div>
-          <div className="flex gap-3 flex-shrink-0">
-            <button
-              onClick={() => navigate("auth", { role: "talent", authMode: "signup" })}
-              className="bg-white text-emerald-800 px-6 py-3 rounded-xl text-sm font-semibold hover:bg-emerald-50 transition-colors"
-            >
-              Cadastrar como Talento
-            </button>
-            <button
-              onClick={() => navigate("auth", { role: "org", authMode: "signup" })}
-              className="border border-white/30 text-white px-6 py-3 rounded-xl text-sm font-medium hover:bg-white/10 transition-colors"
-            >
-              Sou Organização
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-gray-100 py-8 px-8">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
+      <footer className="border-t border-gray-200 bg-white px-5 py-8 sm:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between">
           <BrandLogo compact />
           <p className="text-xs text-gray-400">Protótipo MVP · 2026</p>
         </div>
       </footer>
     </div>
-  );
+  )
 }
